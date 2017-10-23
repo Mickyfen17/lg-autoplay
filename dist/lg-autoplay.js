@@ -1,4 +1,4 @@
-/*! lg-autoplay - v1.0.4 - 2017-03-28
+/*! lg-autoplay - v1.0.4 - 2017-10-23
 * http://sachinchoolur.github.io/lightGallery
 * Copyright (c) 2017 Sachin N; Licensed GPLv3 */
 
@@ -8,13 +8,13 @@
     define(['jquery'], function (a0) {
       return (factory(a0));
     });
-  } else if (typeof exports === 'object') {
+  } else if (typeof module === 'object' && module.exports) {
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
     module.exports = factory(require('jquery'));
   } else {
-    factory(jQuery);
+    factory(root["jQuery"]);
   }
 }(this, function ($) {
 
@@ -145,12 +145,12 @@
     // Manage autoplay via play/stop buttons
     Autoplay.prototype.controls = function() {
         var _this = this;
-        var _html = '<span class="lg-autoplay-button lg-icon"></span>';
+        var _html = '<span class="lg-autoplay-button lg-icon" role="button" aria-label="autoplay" tabindex="0"></span>';
 
         // Append autoplay controls
         $(this.core.s.appendAutoplayControlsTo).append(_html);
 
-        _this.core.$outer.find('.lg-autoplay-button').on('click.lg', function() {
+        _this.core.$outer.find('.lg-autoplay-button').on('click.lg keypress.lg', function() {
             if ($(_this.core.$outer).hasClass('lg-show-autoplay')) {
                 _this.cancelAuto();
                 _this.core.s.fourceAutoplay = false;
