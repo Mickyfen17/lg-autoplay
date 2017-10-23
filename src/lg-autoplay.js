@@ -125,12 +125,12 @@
     // Manage autoplay via play/stop buttons
     Autoplay.prototype.controls = function() {
         var _this = this;
-        var _html = '<span class="lg-autoplay-button lg-icon"></span>';
+        var _html = '<span class="lg-autoplay-button lg-icon" role="button" aria-label="autoplay" tabindex="0"></span>';
 
         // Append autoplay controls
         $(this.core.s.appendAutoplayControlsTo).append(_html);
 
-        _this.core.$outer.find('.lg-autoplay-button').on('click.lg', function() {
+        _this.core.$outer.find('.lg-autoplay-button').on('click.lg keypress.lg', function() {
             if ($(_this.core.$outer).hasClass('lg-show-autoplay')) {
                 _this.cancelAuto();
                 _this.core.s.fourceAutoplay = false;
